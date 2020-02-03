@@ -1,12 +1,15 @@
 package models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "plat")
-public class Plat {
+public class Plat implements Serializable {
+
+    private static final long serialVersionUID = 11L;
 
     @Id
     @Column(name = "numero")

@@ -1,11 +1,14 @@
 package models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "ingredient")
-public class Ingredient {
+public class Ingredient implements Serializable {
+
+    private static final long serialVersionUID = 10L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
