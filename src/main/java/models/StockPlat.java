@@ -2,7 +2,7 @@ package models;
 
 import java.io.Serializable;
 
-public class StockPlat extends Stock implements Serializable,gestionStock {
+public class StockPlat extends Stock implements Serializable, GestionStock {
     private static final long serialVersionUID = 47L;
     private int id;
 }

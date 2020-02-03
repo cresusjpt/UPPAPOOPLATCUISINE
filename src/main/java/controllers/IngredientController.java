@@ -4,6 +4,7 @@ import models.Ingredient;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
 
 
 public class IngredientController {
@@ -18,6 +19,21 @@ public class IngredientController {
         manager.getTransaction().commit();
 
         manager.close();
+    }
+
+    public List<Ingredient> getAll(){
+        EntityManagerFactory factory = utils.EntityManagerFactory.getInstance();
+        List<Ingredient> result;
+
+        EntityManager manager = factory.createEntityManager();
+        manager.getTransaction().begin();
+
+        result =  manager.createQuery("select t from Ingredient t").getResultList();
+
+        manager.getTransaction().commit();
+        manager.close();
+
+        return result;
     }
 
     public void bindIngredientsDataExample(){

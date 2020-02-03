@@ -24,7 +24,7 @@ public class Ingredient implements Serializable {
     @Column(name = "cout")
     private float cout;
 
-    @ManyToMany(mappedBy = "ingredientList")
+    @ManyToMany(mappedBy = "ingredientList",fetch = FetchType.EAGER)
     private List<Plat> platList;
 
     public int getId() {
@@ -57,5 +57,13 @@ public class Ingredient implements Serializable {
 
     public void setCout(float cout) {
         this.cout = cout;
+    }
+
+    public List<Plat> getPlatList() {
+        return platList;
+    }
+
+    public void setPlatList(List<Plat> platList) {
+        this.platList = platList;
     }
 }

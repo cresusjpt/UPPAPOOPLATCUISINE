@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "stock_contenant")
-public class StockContenant extends Stock implements gestionStock, Serializable {
+public class StockContenant extends Stock implements GestionStock, Serializable {
 
     private static final long serialVersionUID = 15L;
 

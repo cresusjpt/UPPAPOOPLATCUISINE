@@ -21,6 +21,8 @@ public class Composition implements Serializable {
     @Column(name = "quantite")
     private float quantite;
 
+
+
     @ManyToOne
     @JoinColumn(name = "id_ingredient")
     private Ingredient ingredient;
@@ -39,5 +41,21 @@ public class Composition implements Serializable {
 
     public void setPlat(Plat plat) {
         this.plat = plat;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
     }
 }

@@ -22,6 +22,20 @@ public class PlatController {
         manager.close();
     }
 
+    public List<Plat> getAll(){
+        List<Plat> result = new ArrayList<Plat>();
+        EntityManagerFactory factory = utils.EntityManagerFactory.getInstance();
+        EntityManager manager = factory.createEntityManager();
+        manager.getTransaction().begin();
+
+        result =  manager.createQuery("select t from Plat t").getResultList();
+
+        manager.getTransaction().commit();
+        manager.close();
+
+        return result;
+    }
+
     public void bindPlatsDataExample(){
         //INSERT CATEGORIE TAJINE PLAT (la categorie tajine est 1 dans notre exemple
         Categorie categorie = new Categorie();
