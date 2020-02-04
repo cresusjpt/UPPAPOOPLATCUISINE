@@ -66,4 +66,17 @@ public class Ingredient implements Serializable {
     public void setPlatList(List<Plat> platList) {
         this.platList = platList;
     }
+
+    public String afficherCoutByUnite() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getNom())
+                .append("\t")
+                .append(this.getUnite())
+                .append("\t")
+                .append(this.getCout())
+                .append("\n")
+                .append("---------------------------------------------\n");
+
+        return builder.toString();
+    }
 }

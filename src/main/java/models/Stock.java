@@ -14,13 +14,13 @@ public abstract class Stock implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-/*    @OneToOne
+    @OneToOne
     @JoinColumns({
             //@JoinColumn(name = "id_conditionnement"),
             @JoinColumn(name = "id_plat", insertable = false, updatable = false),
             @JoinColumn(name = "id_contenant", insertable = false, updatable = false)
     })
-    protected Conditionnement conditionnementStock;*/
+    protected Conditionnement conditionnementStock;
 
     @Column(name = "quantite")
     protected float quantite;

@@ -1,13 +1,15 @@
 package ui;
 
 import controllers.*;
+import models.Conditionnement;
+import models.Ingredient;
 import models.Plat;
 
 import java.util.List;
 
 public class Main {
 
-    private final static int EXECUTE_ONCE = 2;
+    private final static int EXECUTE_ONCE = 1;
 
     public static void main(String[] args) {
 
@@ -24,11 +26,17 @@ public class Main {
             //AJOUT DES CONTENANTS
             addContenant();
 
+            //AJOUT DES ETIQUETTE
+            addEtiquette();
+
             //AJOUT DE QUELQUES COMPOSITIONS PLAT-INGREDIENT
             addCompositions();
 
             //AJOUT DE QUELQUES CONDITIONNEMENT POSSIBLE
             addConditionnementPossible();
+
+            //AJOUT AU STOCK
+
         }
 
         //GESTION DES PLATS CUISINES
@@ -38,10 +46,15 @@ public class Main {
         //2 - Afficher pour chaque plat la liste des conditionnement possibles
         System.out.println(afficherConditionnement());
 
+        //GESTION DE STOCKS
+        //1 - Afficher le Stock des Contenant par Categorie de plat
+
         //GESTION FINANCIERE
         //1 - Afficher la liste des couts pour chacun des Ingrédients
+        System.out.println(afficherCoutIngredient());
 
         //2 - Afficher pour chaque plat son Prix en fonction du conditionnement
+        System.out.println(afficherPrixConditionnement());
     }
 
     private static String afficher(){
@@ -64,6 +77,32 @@ public class Main {
         return result.toString();
     }
 
+    private static String afficherPrixConditionnement(){
+        List<Conditionnement> conditionnements = new ConditionnementController().getAll();
+        StringBuilder builder = new StringBuilder(
+                "NOM DU PLAT:\tCONTENANT DU PLAT\tPRIX DU PLAT"+ "\n"
+                        + "---------------------------------------------\n"
+        );
+        for (Conditionnement conditionnement: conditionnements) {
+            builder.append(conditionnement.afficherPrixByConditionnement());
+        }
+
+        return builder.toString();
+    }
+
+    private static String afficherCoutIngredient(){
+        List<Ingredient> ingredients = new IngredientController().getAll();
+        StringBuilder builder = new StringBuilder(
+                "UNITE INGREDIENT:\tNOM INGREDIENT\tPRIX INGREDIENT"+ "\n"
+                        + "---------------------------------------------\n"
+        );
+        for (Ingredient ingredient: ingredients) {
+            builder.append(ingredient.afficherCoutByUnite());
+        }
+
+        return builder.toString();
+    }
+
 
     private static void addCategories() {
         System.out.println("Ajout de ctegorie");
@@ -84,6 +123,10 @@ public class Main {
     private static void addContenant() {
         ContenantController controller = new ContenantController();
         controller.bindContenantExampleData();
+    }
+
+    private static void addEtiquette(){
+        new EtiquetteController().bindContenantExampleData();
     }
 
     private static void addCompositions(){

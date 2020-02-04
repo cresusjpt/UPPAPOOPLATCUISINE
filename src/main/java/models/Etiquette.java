@@ -15,7 +15,7 @@ public class Etiquette implements Serializable {
     private int id;
 
     @Column(name = "nom")
-    private String nom;
+    private int nom;
 
     public int getId() {
         return id;
@@ -25,11 +25,11 @@ public class Etiquette implements Serializable {
         this.id = id;
     }
 
-    public String getNom() {
+    public int getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom(int nom) {
         this.nom = nom;
     }
 }

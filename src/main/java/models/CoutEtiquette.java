@@ -19,7 +19,7 @@ public class CoutEtiquette implements Serializable {
 
     @OneToOne
     @JoinColumns({
-            //@JoinColumn(name = "id_conditionnement"),
+           // @JoinColumn(name = "id_c"),
             @JoinColumn(name="id_plat"),
             @JoinColumn(name="id_contenant")
     })
