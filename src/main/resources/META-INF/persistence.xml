@@ -15,15 +15,7 @@
             <property name="hibernate.connection.characterEncoding" value="utf8"/>
             <property name="hibernate.connection.useUnicode" value="true"/>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
-            <!-- use encache provider-->
-            <!--<property name="hibernate.cache.region.factory_class"-->
-            <!--value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>-->
-            <!--<property name="hibernate.javax.cache.provider" value="org.ehcache.jsr107.EhcacheCachingProvider"/>-->
-            <!--&lt;!&ndash;use second level cache&ndash;&gt;-->
-            <!--<property name="hibernate.cache.use_second_level_cache" value="true"/>-->
-            <!--&lt;!&ndash;use 3rd level cache&ndash;&gt;-->
-            <!--<property name="hibernate.cache.use_query_cache" value="true"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>
