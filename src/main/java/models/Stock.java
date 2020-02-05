@@ -14,16 +14,17 @@ public abstract class Stock implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne
-    @JoinColumns({
-            //@JoinColumn(name = "id_conditionnement"),
-            @JoinColumn(name = "id_plat", insertable = false, updatable = false),
-            @JoinColumn(name = "id_contenant", insertable = false, updatable = false)
-    })
-    protected Conditionnement conditionnementStock;
+    @Column(name = "id_contenant")
+    private int idContenant;
+
+    @Column(name = "id_plat")
+    private int idPlat;
 
     @Column(name = "quantite")
     protected float quantite;
+
+    @OneToOne(mappedBy = "stock")
+    private Mouvement mouvement;
 
     public float getQuantite() {
         return quantite;
@@ -33,19 +34,27 @@ public abstract class Stock implements Serializable {
         this.quantite = quantite;
     }
 
-    /*public Conditionnement getConditionnementStock() {
-        return conditionnementStock;
-    }
-
-    public void setConditionnementStock(Conditionnement conditionnement) {
-        this.conditionnementStock = conditionnement;
-    }*/
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdContenant() {
+        return idContenant;
+    }
+
+    public void setIdContenant(int idContenant) {
+        this.idContenant = idContenant;
+    }
+
+    public int getIdPlat() {
+        return idPlat;
+    }
+
+    public void setIdPlat(int idPlat) {
+        this.idPlat = idPlat;
     }
 }

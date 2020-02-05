@@ -1,14 +1,14 @@
 package ui;
 
 import controllers.*;
-import models.Conditionnement;
-import models.Ingredient;
-import models.Plat;
+import models.*;
 
 import java.util.List;
 
 public class Main {
 
+    //cette variable nous permet d'executer les codes qui nous permettent d'ajouter les données qu'une seule fois
+    //apres une premiere execution il faudra la chager en 2 ou un autre chiffre different de 1
     private final static int EXECUTE_ONCE = 1;
 
     public static void main(String[] args) {
@@ -36,7 +36,13 @@ public class Main {
             addConditionnementPossible();
 
             //AJOUT AU STOCK
+            addStockPlat();
+            addStockIngredient();
+            addStockContenant();
+            addStockEtiquette();
 
+            //EFFECTUONS UNE SORTIE SUR CHAQQUE STOCK
+            sortieStocks();
         }
 
         //GESTION DES PLATS CUISINES
@@ -48,6 +54,13 @@ public class Main {
 
         //GESTION DE STOCKS
         //1 - Afficher le Stock des Contenant par Categorie de plat
+        System.out.println(afficherStockContenantByCategorie());
+
+        //2 - Afficher le Stock des Etiquette par plat
+        System.out.println(afficherStockEtiquetteByPlat());
+
+        //3 - Afficher le Stock des Plats par Conditionnement
+        System.out.println(afficherStockPlatByConditionnement());
 
         //GESTION FINANCIERE
         //1 - Afficher la liste des couts pour chacun des Ingrédients
@@ -103,9 +116,7 @@ public class Main {
         return builder.toString();
     }
 
-
     private static void addCategories() {
-        System.out.println("Ajout de ctegorie");
         CategorieController categorieController = new CategorieController();
         categorieController.bindCategorieDataExample();
     }
@@ -137,5 +148,70 @@ public class Main {
     private static void addConditionnementPossible(){
         ConditionnementController conditionnementController = new ConditionnementController();
         conditionnementController.bindConditionnement();
+    }
+
+    private static void addStockPlat(){
+        new StockPlatController().bindStockPlatDataExample();
+    }
+
+    private static void addStockIngredient(){
+        new StockIngredientController().bindStockIngredientDataExample();
+    }
+
+    private static void addStockContenant(){
+        new StockContenantController().bindStockContenantDataExample();
+    }
+
+    private static void addStockEtiquette(){
+        new StockEtiquetteController().bindStockEtiquetteDataExample();
+    }
+
+    private static void sortieStocks(){
+        List<StockPlat> stockPlats = new StockPlatController().getAll();
+        List<StockIngredient> stockIngredients = new StockIngredientController().getAll();
+        List<StockContenant> stockContenants = new StockContenantController().getAll();
+        List<StockEtiquette> stockEtiquettes = new StockEtiquetteController().getAll();
+
+        for (StockPlat st : stockPlats) {
+            st.sortie(st,1);
+        }
+
+        for (StockContenant st : stockContenants) {
+            st.sortie(st,1);
+        }
+
+        for (StockEtiquette st : stockEtiquettes) {
+            st.sortie(st,1);
+        }
+    }
+
+    private static String afficherStockContenantByCategorie(){
+        StringBuilder string = new StringBuilder();
+        List<StockContenant> stockContenants = new StockContenantController().getAll();
+
+        for (StockContenant stockContenant: stockContenants) {
+            string.append(stockContenant.afficherParCategorie());
+        }
+        return string.toString();
+    }
+
+    private static String afficherStockEtiquetteByPlat(){
+        StringBuilder string = new StringBuilder();
+        List<StockEtiquette> stockEtiquettes = new StockEtiquetteController().getAll();
+
+        for (StockEtiquette st: stockEtiquettes) {
+            string.append(st.afficherParPlat());
+        }
+        return string.toString();
+    }
+
+    private static String afficherStockPlatByConditionnement(){
+        StringBuilder string = new StringBuilder();
+        List<StockPlat> stockPlats = new StockPlatController().getAll();
+
+        for (StockPlat st: stockPlats) {
+            string.append(st.afficherParConditionnement());
+        }
+        return string.toString();
     }
 }

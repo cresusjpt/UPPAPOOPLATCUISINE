@@ -32,11 +32,6 @@ public class Conditionnement implements Serializable {
     @OneToOne(mappedBy = "conditionnementEtiquette")
     private CoutEtiquette coutEtiquette;
 
-    @OneToOne(mappedBy = "conditionnementStock")
-    private Stock stock;
-
-
-
     public Contenant getContenant() {
         return contenant;
     }
@@ -95,13 +90,5 @@ public class Conditionnement implements Serializable {
                 "\n" +
                 "---------------------------------------------\n";
     }
-
-/*    public Stock getStock() {
-        return stock;
-    }
-
-    public void setStock(Stock stock) {
-        this.stock = stock;
-    }*/
 
 }
