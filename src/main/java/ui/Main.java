@@ -53,7 +53,7 @@ public class Main {
         System.out.println(afficherConditionnement());
 
         //GESTION DE STOCKS
-        //1 - Afficher le Stock des Contenant par Categorie de plat
+        //1 - Afficher le Stock des Contenants par Categorie de plat
         System.out.println(afficherStockContenantByCategorie());
 
         //2 - Afficher le Stock des Etiquette par plat
